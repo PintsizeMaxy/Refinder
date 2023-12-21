@@ -59,9 +59,6 @@ fun MapScreen(viewModel: MapViewModel) {
                                 )
                                 pitch(0.0)
                                 bearing(0.0)
-                            },
-                            MapAnimationOptions.mapAnimationOptions {
-                                duration(12_000)
                             }
                         )
                     },
