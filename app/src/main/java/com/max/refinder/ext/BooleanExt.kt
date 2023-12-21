@@ -1,6 +1,6 @@
 package com.max.refinder.ext
 
-fun Boolean.isTrue(doOnTrue: () -> Unit, doOnFalse: () -> Unit) {
+fun Boolean.ifElse(doOnTrue: () -> Unit, doOnFalse: () -> Unit) {
     if(this){
         doOnTrue()
     } else {

@@ -3,7 +3,7 @@ package com.max.refinder.viewmodels
 import androidx.lifecycle.ViewModel
 import com.mapbox.common.location.LocationProviderRequest
 import com.mapbox.common.location.LocationService
-import com.max.refinder.ext.isTrue
+import com.max.refinder.ext.ifElse
 import com.max.refinder.models.MapState
 import com.max.refinder.models.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,8 +27,9 @@ class MapViewModel @Inject constructor(
     }
 
     private fun retrieveCurrentLocation() {
-        val locationProviderResult = locationService.getDeviceLocationProvider(locationProviderRequest)
-        locationProviderResult.isValue.isTrue(
+        val locationProviderResult =
+            locationService.getDeviceLocationProvider(locationProviderRequest)
+        locationProviderResult.isValue.ifElse(
             {
                 locationProviderResult.value!!.getLastLocation {
                     it?.let { location ->
