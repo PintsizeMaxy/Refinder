@@ -1,7 +1,11 @@
 package com.max.refinder
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -9,7 +13,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.mapbox.geojson.Point
 import com.mapbox.maps.ScreenCoordinate
 import com.mapbox.maps.dsl.cameraOptions
@@ -44,7 +50,7 @@ fun MapScreen(viewModel: MapViewModel) {
                     mapViewportState = MapViewportState().apply {
                         flyTo(
                             cameraOptions {
-                                zoom(10.0)
+                                zoom(8.0)
                                 center(
                                     Point.fromLngLat(
                                         locationState.data.long,
@@ -79,6 +85,14 @@ fun MapScreen(viewModel: MapViewModel) {
                         pinchToZoomDecelerationEnabled = false
                     }
                 )
+                Column(
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Button(modifier = Modifier.padding(top = 124.dp), onClick = { }) {
+                        Text("Get Restaurants")
+                    }
+                }
             }
         }
     }
