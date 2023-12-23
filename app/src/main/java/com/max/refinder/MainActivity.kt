@@ -22,6 +22,8 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
+import com.max.refinder.screens.MapScreen
+import com.max.refinder.screens.RestaurantsScreen
 import com.max.refinder.ui.theme.RefinderTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,7 +40,14 @@ class MainActivity : ComponentActivity() {
                     rememberPermissionState(permission = Manifest.permission.ACCESS_FINE_LOCATION)
                 if (locationPermissionsState.status.isGranted) {
                     NavHost(navController = navController, startDestination = "map") {
-                        composable("map") { MapScreen(viewModel = hiltViewModel()) }
+                        composable("map") {
+                            MapScreen(viewModel = hiltViewModel()) {
+                                navController.navigate(
+                                    "restaurants"
+                                )
+                            }
+                        }
+                        composable("restaurants") { RestaurantsScreen() }
                     }
                 } else {
                     Surface(Modifier.fillMaxSize()) {
