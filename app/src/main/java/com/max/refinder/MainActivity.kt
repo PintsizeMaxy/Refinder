@@ -40,7 +40,13 @@ class MainActivity : ComponentActivity() {
                     rememberPermissionState(permission = Manifest.permission.ACCESS_FINE_LOCATION)
                 if (locationPermissionsState.status.isGranted) {
                     NavHost(navController = navController, startDestination = "map") {
-                        composable("map") { MapScreen(viewModel = hiltViewModel()) }
+                        composable("map") {
+                            MapScreen(viewModel = hiltViewModel()) {
+                                navController.navigate(
+                                    "restaurants"
+                                )
+                            }
+                        }
                         composable("restaurants") { RestaurantsScreen() }
                     }
                 } else {

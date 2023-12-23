@@ -25,13 +25,13 @@ import com.mapbox.maps.extension.compose.animation.viewport.MapViewportState
 import com.mapbox.maps.plugin.gestures.generated.GesturesSettings
 import com.mapbox.maps.plugin.locationcomponent.generated.LocationComponentSettings
 import com.max.refinder.R
+import com.max.refinder.disabledMap
 import com.max.refinder.models.ViewState
 import com.max.refinder.viewmodels.MapViewModel
 
 @Composable
-fun MapScreen(viewModel: MapViewModel) {
+fun MapScreen(viewModel: MapViewModel, navigateToRestaurants: () -> Unit) {
     val locationState = viewModel.mapState.collectAsState().value
-    val navController = rememberNavController()
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -70,20 +70,7 @@ fun MapScreen(viewModel: MapViewModel) {
                     ) {
                         enabled = true
                     },
-                    gesturesSettings = GesturesSettings {
-                        doubleTapToZoomInEnabled = false
-                        doubleTouchToZoomOutEnabled = false
-                        pitchEnabled = false
-                        pinchScrollEnabled = false
-                        simultaneousRotateAndPinchToZoomEnabled = false
-                        scrollEnabled = false
-                        scrollDecelerationEnabled = false
-                        rotateEnabled = false
-                        quickZoomEnabled = false
-                        rotateDecelerationEnabled = false
-                        pinchToZoomEnabled = false
-                        pinchToZoomDecelerationEnabled = false
-                    }
+                    gesturesSettings = disabledMap
                 )
                 Column(
                     verticalArrangement = Arrangement.Center,
@@ -91,7 +78,7 @@ fun MapScreen(viewModel: MapViewModel) {
                 ) {
                     Button(
                         modifier = Modifier.padding(top = 124.dp),
-                        onClick = { navController.navigate("restaurants") }) {
+                        onClick = navigateToRestaurants) {
                         Text(stringResource(R.string.get_restaurants))
                     }
                 }
