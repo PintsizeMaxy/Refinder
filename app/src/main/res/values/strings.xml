@@ -3,5 +3,6 @@
     <string name="permission_request_initial">Location Permissions Needed</string>
     <string name="permissions_request_needed">Location Permissions Required to use Refinder</string>
     <string name="request_permissions">Request Permissions</string>
+    <string name="get_restaurants">Get Restaurants</string>
     <string name="mapbox_access_token">sk.eyJ1IjoicGludHNpemVtYXh5IiwiYSI6ImNscWR6bjExbzA0MjcyanA4Nzg3czFxcDkifQ.450SM0ue2dlJWGtW-BnaUQ</string>
 </resources>
