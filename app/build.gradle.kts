@@ -65,8 +65,6 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation("com.mapbox.maps:android:11.0.0")
-    implementation("com.mapbox.extension:maps-compose:11.0.0")
     implementation("com.jakewharton.timber:timber:5.0.1")
     implementation("com.google.dagger:hilt-android:2.48")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
@@ -74,6 +72,10 @@ dependencies {
     implementation("com.google.accompanist:accompanist-permissions:0.33.2-alpha")
     val navVersion = "2.7.6"
     implementation("androidx.navigation:navigation-compose:$navVersion")
+
+    // Mapbox
+    implementation("com.mapbox.maps:android:11.0.0")
+    implementation("com.mapbox.extension:maps-compose:11.0.0")
 }
 
 kapt {

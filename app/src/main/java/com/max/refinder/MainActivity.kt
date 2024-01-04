@@ -42,9 +42,7 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController = navController, startDestination = "map") {
                         composable("map") {
                             MapScreen(viewModel = hiltViewModel()) {
-                                navController.navigate(
-                                    "restaurants"
-                                )
+                                navController.navigate("restaurants")
                             }
                         }
                         composable("restaurants") { RestaurantsScreen() }

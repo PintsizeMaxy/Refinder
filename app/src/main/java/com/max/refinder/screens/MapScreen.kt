@@ -18,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.mapbox.geojson.Point
+import com.mapbox.maps.MapboxExperimental
 import com.mapbox.maps.dsl.cameraOptions
 import com.mapbox.maps.extension.compose.DefaultSettingsProvider
 import com.mapbox.maps.extension.compose.MapboxMap
@@ -29,6 +30,7 @@ import com.max.refinder.disabledMap
 import com.max.refinder.models.ViewState
 import com.max.refinder.viewmodels.MapViewModel
 
+@OptIn(MapboxExperimental::class)
 @Composable
 fun MapScreen(viewModel: MapViewModel, navigateToRestaurants: () -> Unit) {
     val locationState = viewModel.mapState.collectAsState().value
