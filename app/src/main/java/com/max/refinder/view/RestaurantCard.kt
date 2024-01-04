@@ -3,7 +3,7 @@ package com.max.refinder.view
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -53,28 +53,28 @@ fun RestaurantCard() {
         ) {
 
         }
-        Row(Modifier.fillMaxWidth()) {
-            RestaurantCardField(title = "Name:", value = "Bar 3 BBQ")
-            RestaurantCardField(title = "Type:", value = "BBQ")
+        Row(Modifier.padding(12.dp).fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            RestaurantCardField(title = "Name:", value = "Bar 3 BBQ", Modifier.weight(1.2f))
+            RestaurantCardField(title = "Type:", value = "BBQ", Modifier.weight(1.2f))
         }
-        Row(Modifier.fillMaxWidth()) {
-            RestaurantCardField(title = "Address:", value = "119 E Main St, Belgrade, MT 59714")
-            RestaurantCardField(title = "Distance:", value = "2 miles")
+        Row(Modifier.padding(12.dp).fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            RestaurantCardField(title = "Address:", value = "119 E Main St, Belgrade, MT 59714", Modifier.weight(1.2f))
+            RestaurantCardField(title = "Distance:", value = "2 miles", Modifier.weight(1.2f))
         }
-        Row(Modifier.fillMaxWidth()) {
-            RestaurantCardField(title = "Rating:", value = "4/5")
-            RestaurantCardField(title = "Reviews:", value = "231 Reviews")
+        Row(Modifier.padding(12.dp).fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+            RestaurantCardField(title = "Rating:", value = "4/5", Modifier.weight(1.2f))
+            RestaurantCardField(title = "Reviews:", value = "231 Reviews", Modifier.weight(1.2f))
         }
-        Row(Modifier.fillMaxWidth()) {
-            RestaurantCardField(title = "Hours:", value = "5pm")
-            RestaurantCardField(title = "Distance:", value = "2 miles")
+        Row(Modifier.padding(12.dp).fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            RestaurantCardField(title = "Hours:", value = "5pm", Modifier.weight(1.2f))
+            RestaurantCardField(title = "Distance:", value = "2 miles", Modifier.weight(1.2f))
         }
     }
 }
 
 @Composable
-fun RowScope.RestaurantCardField(title: String, value: String, modifier: Modifier = Modifier){
-    Row(modifier = modifier.weight(.5f).fillMaxWidth()){
+fun RestaurantCardField(title: String, value: String, modifier: Modifier = Modifier){
+    Column(modifier){
         Text(title)
         Text(value)
     }
