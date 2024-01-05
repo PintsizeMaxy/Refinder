@@ -14,11 +14,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.mapbox.geojson.Point
+import com.mapbox.maps.CameraOptions
+import com.mapbox.maps.MapInitOptions
 import com.mapbox.maps.MapboxExperimental
+import com.mapbox.maps.Style
 import com.mapbox.maps.dsl.cameraOptions
 import com.mapbox.maps.extension.compose.DefaultSettingsProvider
 import com.mapbox.maps.extension.compose.MapboxMap
@@ -34,6 +38,7 @@ import com.max.refinder.viewmodels.MapViewModel
 @Composable
 fun MapScreen(viewModel: MapViewModel, navigateToRestaurants: () -> Unit) {
     val locationState = viewModel.mapState.collectAsState().value
+    val context = LocalContext.current
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -52,19 +57,19 @@ fun MapScreen(viewModel: MapViewModel, navigateToRestaurants: () -> Unit) {
             is ViewState.Success -> {
                 MapboxMap(
                     Modifier.fillMaxSize(),
-                    mapViewportState = MapViewportState().apply {
-                        flyTo(
-                            cameraOptions {
-                                zoom(8.0)
-                                center(
+                    mapInitOptionsFactory = {
+                        MapInitOptions(
+                            context = it,
+                            styleUri = Style.MAPBOX_STREETS,
+                            cameraOptions = CameraOptions.Builder()
+                                .center(
                                     Point.fromLngLat(
                                         locationState.data.long,
                                         locationState.data.lat
                                     )
                                 )
-                                pitch(0.0)
-                                bearing(0.0)
-                            }
+                                .zoom(10.0)
+                                .build()
                         )
                     },
                     locationComponentSettings = LocationComponentSettings(
@@ -80,7 +85,8 @@ fun MapScreen(viewModel: MapViewModel, navigateToRestaurants: () -> Unit) {
                 ) {
                     Button(
                         modifier = Modifier.padding(top = 124.dp),
-                        onClick = navigateToRestaurants) {
+                        onClick = navigateToRestaurants
+                    ) {
                         Text(stringResource(R.string.get_restaurants))
                     }
                 }
